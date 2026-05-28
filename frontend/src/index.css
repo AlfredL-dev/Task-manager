@@ -1,0 +1,283 @@
+/* ============================================================
+   Reset & base
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #1a1a1a;
+  background: #f5f5f5;
+}
+
+a { color: #2563eb; }
+
+/* ============================================================
+   Buttons
+   ============================================================ */
+button {
+  cursor: pointer;
+  border: 1px solid #d1d5db;
+  background: #fff;
+  border-radius: 6px;
+  padding: 6px 14px;
+  font-size: 14px;
+  transition: background 0.15s;
+}
+button:disabled { opacity: 0.55; cursor: not-allowed; }
+button:hover:not(:disabled) { background: #f3f4f6; }
+
+.btn-primary {
+  background: #2563eb;
+  color: #fff;
+  border-color: #2563eb;
+}
+.btn-primary:hover:not(:disabled) { background: #1d4ed8; }
+
+.btn-secondary {
+  background: transparent;
+  border-color: #d1d5db;
+}
+
+.btn-danger {
+  color: #dc2626;
+  border-color: #fca5a5;
+}
+.btn-danger:hover:not(:disabled) { background: #fef2f2; }
+
+.btn-link {
+  border: none;
+  background: none;
+  padding: 0;
+  color: #2563eb;
+  text-decoration: underline;
+  font-size: inherit;
+}
+.btn-full { width: 100%; padding: 10px; font-size: 15px; }
+
+/* ============================================================
+   Auth pages
+   ============================================================ */
+.auth-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 24px;
+}
+
+.auth-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 36px;
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.auth-card h1 { font-size: 22px; font-weight: 600; }
+.auth-switch { font-size: 14px; color: #6b7280; }
+
+/* ============================================================
+   Forms (shared by auth + task form)
+   ============================================================ */
+form { display: flex; flex-direction: column; gap: 14px; }
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"],
+textarea,
+select {
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-size: 15px;
+  width: 100%;
+  font-family: inherit;
+}
+input:focus, textarea:focus, select:focus {
+  outline: 2px solid #2563eb;
+  outline-offset: 1px;
+  border-color: #2563eb;
+}
+
+.form-error {
+  background: #fef2f2;
+  border: 1px solid #fca5a5;
+  color: #dc2626;
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 14px;
+}
+
+.form-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.hint { font-weight: 400; color: #6b7280; font-size: 13px; }
+
+/* ============================================================
+   Main page layout
+   ============================================================ */
+.page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 32px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.page-header h1 { font-size: 24px; font-weight: 700; }
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.user-email { font-size: 14px; color: #6b7280; }
+
+/* ============================================================
+   Filter toolbar
+   ============================================================ */
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.filters { display: flex; gap: 6px; flex-wrap: wrap; }
+.filter-btn { font-size: 13px; }
+.filter-btn.active {
+  background: #2563eb;
+  color: #fff;
+  border-color: #2563eb;
+}
+
+/* ============================================================
+   Task form (inline)
+   ============================================================ */
+.task-form {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 20px;
+}
+.task-form h2 { font-size: 16px; font-weight: 600; margin-bottom: 16px; }
+
+/* ============================================================
+   Task list
+   ============================================================ */
+.task-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.task-item {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 14px 16px;
+}
+.task-item.task-done { opacity: 0.6; }
+.task-item.task-done .task-title { text-decoration: line-through; }
+
+.task-main {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.task-main input[type="checkbox"] {
+  margin-top: 3px;
+  width: 17px;
+  height: 17px;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.task-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.task-title {
+  font-size: 15px;
+  font-weight: 500;
+}
+.task-done .task-title { text-decoration: line-through; }
+
+.task-description {
+  font-size: 13px;
+  color: #6b7280;
+  white-space: pre-wrap;
+}
+
+.task-meta {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 4px;
+}
+
+.status-select {
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 20px;
+  font-weight: 500;
+  border: 1px solid transparent;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+}
+.status-select:focus { outline: 2px solid #2563eb; }
+.status-select.status-pending    { background: #fef9c3; color: #854d0e; }
+.status-select.status-inprogress { background: #dbeafe; color: #1e40af; }
+.status-select.status-done       { background: #dcfce7; color: #166534; }
+
+.task-due { font-size: 12px; color: #6b7280; }
+
+.task-actions {
+  display: flex;
+  gap: 6px;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+.task-actions button { font-size: 13px; }
+
+/* ============================================================
+   State messages
+   ============================================================ */
+.loading, .empty-state { color: #6b7280; font-size: 15px; text-align: center; padding: 32px 0; }
+.page-error {
+  background: #fef2f2;
+  border: 1px solid #fca5a5;
+  color: #dc2626;
+  border-radius: 6px;
+  padding: 12px 16px;
+  font-size: 14px;
+}

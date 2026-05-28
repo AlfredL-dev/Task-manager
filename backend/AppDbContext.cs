@@ -1,0 +1,30 @@
+using backend.Models;
+using Microsoft.EntityFrameworkCore;
+
+namespace backend;
+
+public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
+{
+    public DbSet<User> Users => Set<User>();
+    public DbSet<TaskItem> Tasks => Set<TaskItem>();
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<User>(e =>
+        {
+            e.HasIndex(u => u.Email).IsUnique();
+            e.Property(u => u.Email).HasMaxLength(256);
+        });
+
+        modelBuilder.Entity<TaskItem>(e =>
+        {
+            e.Property(t => t.Title).HasMaxLength(200);
+            e.Property(t => t.Description).HasMaxLength(2000);
+            // Ownership: cascade delete tasks when user is removed
+            e.HasOne(t => t.User)
+             .WithMany(u => u.Tasks)
+             .HasForeignKey(t => t.UserId)
+             .OnDelete(DeleteBehavior.Cascade);
+        });
+    }
+}
