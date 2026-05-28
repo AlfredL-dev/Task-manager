@@ -1,0 +1,11 @@
+# Frontend
+frontend/node_modules/
+
+# Backend build and output
+backend/bin/
+backend/obj/
+backend/tasks.db
+
+# Tests build/output
+backend.Tests/bin/
+backend.Tests/obj/
